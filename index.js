@@ -37,7 +37,7 @@ app.use('/registration', require('./routes/registration'));
 app.use('/login', require('./routes/login'));
 
 // exercise
-app.use('/exercise', require('./routes/exercise'));
+app.use('/exercises/:email', require('./routes/exercise'));
 
 // app.get("*", (req, res) => {
 //   res.sendFile(path.join(__dirname, '../client/build/index.html' ));
