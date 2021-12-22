@@ -33,6 +33,7 @@ app.get("/", function (req, res) {
   res.send("Hello World");
 });
 
+
 // registration
 app.use('/', require('./routes/registration'));
 
