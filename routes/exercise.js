@@ -48,7 +48,7 @@ router.get('https://spartan-db.herokuapp.com/exercises/:id', async (req, res) =>
 });
 
 // update exercise
-router.put('/exercises/:id', async (req, res) => {
+router.put('https://spartan-db.herokuapp.com/exercises/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const { exercise, reps, weight } = req.body;
