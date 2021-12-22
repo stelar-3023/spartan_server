@@ -35,13 +35,13 @@ app.get("/", function (req, res) {
 
 
 // registration
-app.use('/', require('./routes/registration'));
+app.post('/', require('./routes/registration'));
 
 // login and verify
-app.use('/', require('./routes/login'));
+app.post('/', require('./routes/login'));
 
 // exercise
-app.use('/', require('./routes/exercise'));
+app.get('/', require('./routes/exercise'));
 
 // app.get("*", (req, res) => {
 //   res.sendFile(path.join(__dirname, '../client/build/index.html' )); 
