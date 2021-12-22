@@ -74,7 +74,7 @@ router.put('/exercises/:id', async (req, res) => {
 });
 
 // delete exercise
-router.delete('https://spartan-db.herokuapp.com/exercises/:id', async (req, res) => {
+router.delete('/exercises/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const deleteExercise = await pool.query(
