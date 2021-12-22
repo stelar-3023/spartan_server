@@ -20,10 +20,6 @@ app.use(function (req, res, next) {
 });
 app.use(express.json()); // req.body
 
-if (process.env.NODE_ENV === 'production') {
-  // serve static files
-  app.use(express.static('client/build'));
-}
 
 app.get('/', function (req, res) {
   //when we get an http get request to the root/homepage
@@ -31,13 +27,13 @@ app.get('/', function (req, res) {
 });
 
 // registration
-app.use('/registration', require('./routes/registration'));
+app.use('/', require('./routes/registration'));
 
 // login and verify
-app.use('/login', require('./routes/login'));
+app.use('/', require('./routes/login'));
 
 // exercise
-app.use('/exercises/:email', require('./routes/exercise'));
+app.use('/', require('./routes/exercise'));
 
 // app.get("*", (req, res) => {
 //   res.sendFile(path.join(__dirname, '../client/build/index.html' ));
