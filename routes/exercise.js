@@ -33,7 +33,7 @@ router.get('/exercises/:email', async (req, res) => {
 });
 
 // get exercise by id
-router.get('/exercises/:id', async (req, res) => {
+router.get('https://spartan-db.herokuapp.com/exercises/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const exercise = await pool.query(
