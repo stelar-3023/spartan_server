@@ -1,1 +1,0 @@
-# spartan_server
