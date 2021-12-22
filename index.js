@@ -33,19 +33,8 @@ app.use('/', require('./routes/registration'));
 app.use('/', require('./routes/login'));
 
 // exercise
-// app.use('/', require('./routes/exercise'));
-app.get('https://spartan-db.herokuapp.com/exercises/:email', async (req, res) => {
-  try {
-    const email = req.params.email;
-    const exercises = await pool.query(
-      `SELECT * FROM exercises where user_email='${email}'`
-    );
-    res.json(exercises.rows);
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send('Server Error');
-  }
-});
+app.use('/', require('./routes/exercise'));
+
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

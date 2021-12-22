@@ -7,7 +7,7 @@ const authorization = require('../middleware/authorization');
 const jwtGenerator = require('../utils/jwtGenerator');
 
 // login route
-router.post('https://spartan-db.herokuapp.com/login', validInfo, async (req, res) => {
+router.post('/login', validInfo, async (req, res) => {
   try {
     // 1. destructure the req.body
     const { email, password } = req.body;
@@ -43,7 +43,7 @@ router.post('https://spartan-db.herokuapp.com/login', validInfo, async (req, res
 });
 
 // verify route
-router.post('https://spartan-db.herokuapp.com/verify', authorization, (req, res) => {
+router.post('/verify', authorization, (req, res) => {
   try {
     res.json(true);
   } catch (err) {
