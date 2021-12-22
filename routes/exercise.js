@@ -19,7 +19,7 @@ router.post('/exercises/:email', async (req, res) => {
 });
 
 // get all exercises
-router.get('/exercises/:email', async (req, res) => {
+router.get('https://spartan-db.herokuapp.com/exercises/:email', async (req, res) => {
   try {
     const email = req.params.email;
     const exercises = await pool.query(
@@ -74,7 +74,7 @@ router.put('https://spartan-db.herokuapp.com/exercises/:id', async (req, res) =>
 });
 
 // delete exercise
-router.delete('/exercises/:id', async (req, res) => {
+router.delete('https://spartan-db.herokuapp.com/exercises/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const deleteExercise = await pool.query(

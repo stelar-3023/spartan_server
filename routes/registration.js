@@ -6,7 +6,7 @@ const validInfo = require('../middleware/validInfo');
 const jwtGenerator = require('../utils/jwtGenerator');
 
 // register route
-router.post('/register', validInfo, async (req, res) => {
+router.post('https://spartan-db.herokuapp.com/register', validInfo, async (req, res) => {
   // 1. destructure the req.body (name, email, password)
   const { email, name, password } = req.body;
   try {
