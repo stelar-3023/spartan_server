@@ -28,22 +28,22 @@ if(process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
 }
 
-app.get("/", function (req, res) {
-  //when we get an http get request to the root/homepage
-  res.send("Hello World");
-});
+// app.get("/", function (req, res) {
+//   //when we get an http get request to the root/homepage
+//   res.send("Hello World");
+// });
 
 // registration
-app.use('/', require('./routes/registration'));
+app.use('/', require('../routes/registration'));
 
 // login and verify
-app.use('/', require('./routes/login'));
+app.use('/', require('../routes/login'));
 
 // exercise
-app.use('/', require('./routes/exercise'));
+app.use('/', require('../routes/exercise'));
 
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+  res.sendFile(path.join(__dirname, "./client/build/index.html")); 
 })
 
 app.listen(PORT, () => {
