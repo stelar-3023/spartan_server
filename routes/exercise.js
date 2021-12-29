@@ -4,20 +4,21 @@ const pool = require('../db');
 const exerciseController = require('../controllers/exerciseController');
 
 // add exercise
-router.post('/exercises/:email', async (req, res) => {
-  try {
-    const { exercise, reps, weight, date, email } = req.body;
-    const newExercise = await pool.query(
-      `INSERT INTO exercises (exercise, reps, weight, date_performed, user_email) VALUES ($1, $2, $3, $4, $5) RETURNING *`,
-      [exercise, reps, weight, date, email]
-    );
+router.post('/exercises/:email', exerciseController.exercise_post);
+// router.post('/exercises/:email', async (req, res) => {
+//   try {
+//     const { exercise, reps, weight, date, email } = req.body;
+//     const newExercise = await pool.query(
+//       `INSERT INTO exercises (exercise, reps, weight, date_performed, user_email) VALUES ($1, $2, $3, $4, $5) RETURNING *`,
+//       [exercise, reps, weight, date, email]
+//     );
 
-    res.json(newExercise.rows[0]);
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send('Server Error');
-  }
-});
+//     res.json(newExercise.rows[0]);
+//   } catch (err) {
+//     console.error(err.message);
+//     res.status(500).send('Server Error');
+//   }
+// });
 
 // get all exercises
 router.get('/exercises/:email', exerciseController.exercise_index);
@@ -51,7 +52,7 @@ router.get('/exercises/:id', exerciseController.exercise_details);
 // });
 
 // update exercise
-router.put('/exercises/:id', exerciseController.exercise_update)
+router.put('/exercises/:id', exerciseController.exercise_update);
 // router.put('/exercises/:id', async (req, res) => {
 //   try {
 //     const { id } = req.params;

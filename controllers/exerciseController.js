@@ -68,9 +68,26 @@ const exercise_delete = async (req, res) => {
   }
 };
 
+// add exercise
+const exercise_post = async (req, res) => {
+  try {
+    const { exercise, reps, weight, date, email } = req.body;
+    const newExercise = await pool.query(
+      `INSERT INTO exercises (exercise, reps, weight, date_performed, user_email) VALUES ($1, $2, $3, $4, $5) RETURNING *`,
+      [exercise, reps, weight, date, email]
+    );
+
+    res.json(newExercise.rows[0]);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+};
+
 module.exports = {
   exercise_index,
   exercise_update,
   exercise_details,
   exercise_delete,
+  exercise_post,
 };
