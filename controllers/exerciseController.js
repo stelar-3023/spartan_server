@@ -1,4 +1,5 @@
 const pool = require('../db');
+
 //get all exercises
 const exercise_index = async (req, res) => {
   try {
@@ -22,6 +23,22 @@ const exercise_details = async (req, res) => {
       [id]
     );
     res.json(exercise.rows[0]);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+};
+
+// add exercise
+const exercise_post = async (req, res) => {
+  try {
+    const { exercise, reps, weight, date, email } = req.body;
+    const newExercise = await pool.query(
+      `INSERT INTO exercises (exercise, reps, weight, date_performed, user_email) VALUES ($1, $2, $3, $4, $5) RETURNING *`,
+      [exercise, reps, weight, date, email]
+    );
+
+    res.json(newExercise.rows[0]);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');
@@ -54,6 +71,7 @@ const exercise_update = async (req, res) => {
   }
 };
 
+// delete exercise
 const exercise_delete = async (req, res) => {
   try {
     const { id } = req.params;
@@ -62,22 +80,6 @@ const exercise_delete = async (req, res) => {
       [id]
     );
     res.json('Exercise deleted');
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send('Server Error');
-  }
-};
-
-// add exercise
-const exercise_post = async (req, res) => {
-  try {
-    const { exercise, reps, weight, date, email } = req.body;
-    const newExercise = await pool.query(
-      `INSERT INTO exercises (exercise, reps, weight, date_performed, user_email) VALUES ($1, $2, $3, $4, $5) RETURNING *`,
-      [exercise, reps, weight, date, email]
-    );
-
-    res.json(newExercise.rows[0]);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');
